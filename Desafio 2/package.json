@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+<<<<<<< HEAD
+<<<<<<< HEAD
+    "package.json": "^2.0.1"
+=======
+    "package-lock.json": "^1.0.0"
+>>>>>>> 33d5524c13300ddf4c947e877aeb909f234f5f8a
+=======
+    "package-lock.json": "^1.0.0"
+>>>>>>> 33d5524c13300ddf4c947e877aeb909f234f5f8a
+  }
+}
