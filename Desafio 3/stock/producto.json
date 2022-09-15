@@ -1,0 +1,20 @@
+[
+  {
+    "title": "moto",
+    "price": "350.000",
+    "url": "https://auteco.vteximg.com.br/arquivos/ids/218549-250-250/benelli-251s-verde-2022-foto1.png?v=637922146008800000",
+    "id": 1
+  },
+  {
+    "title": "auto bmw",
+    "price": "3.740.000",
+    "url": "https://i.ytimg.com/vi/7ajGAJA4uYY/maxresdefault.jpg",
+    "id": 2
+  },
+  {
+    "title": "Bicicleta Venzo",
+    "price": "60.000",
+    "url": "https://biciurbana.com.ar/11558-large_default/bicicleta-venzo-stinger-20-vel-shimano-deore.jpg",
+    "id": 3
+  }
+]

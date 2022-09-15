@@ -17,12 +17,20 @@ class Contenedor{
     }
 
     // Metodo para subir al archivo nuevos objetos y agregarles sus respectivos Ids
-    save = objeto =>{
+    save = (objeto) =>{
         try{       
-            objeto.id= id = id + 1;
-            arrayProductos.push(objeto);
+            if(objeto >= [])
+                objeto.map(elemento=>{
+                    elemento.id= id = id + 1;
+                    arrayProductos.push(elemento)
+                });
+            else{
+                objeto.id= id = id + 1;
+                arrayProductos.push(objeto);
+            }
             fs.writeFileSync(this.ruta, JSON.stringify(arrayProductos, null, 2), 'utf-8')
-            console.log("Objeto ",objeto.title," con id ",objeto.id," subido correctamente");
+            console.log("Subida realizada correctamente");
+            
         }
         catch(error){
             console.log("Hubo un error al subir el objeto: ", error.message);
@@ -86,18 +94,41 @@ const auto= new Producto(
     price="3.740.000",
     url="https://i.ytimg.com/vi/7ajGAJA4uYY/maxresdefault.jpg"
 );
+const bici= new Producto(
+    title="Bicicleta Venzo",
+    price="60.000",
+    url="https://biciurbana.com.ar/11558-large_default/bicicleta-venzo-stinger-20-vel-shimano-deore.jpg"
+);
 
-const bd = new Contenedor("./producto.json")
-/* Main */
+const bd = new Contenedor("./stock/producto.json")
 
-//subimos los objetos a la "base de datos"
-bd.save(moto);
-bd.save(auto);
+/* Subimos los objetos a la BD */
+bd.save([moto, auto, bici]);
 
-//obtenemos los objetos y en este caso los imprimimos
-console.log("Objeto con id ",id," es:\n", bd.getById(2));
-console.log(bd.getAll());
+/* Ejecutamos */ 
+const express=require('express');
+const app=express();
+const arrayProductosBajados=bd.getAll();
+const PORT=8080;
 
-//Eliminamos un objeto y a la vez eliminamos todos los demas con deleteAll
-bd.deleteById(0);
-bd.deleteAll();
+const server= app.listen(PORT,()=>{
+    console.log(`servidor express escuchando en el puerto ${server.address().port}`)
+})
+server.on("error", (error)=>console.log(`Error en el servidor: ${error}`));
+
+/* Muestra hola mundo en la ruta / */
+app.get("/",(req, res)=>{
+    res.send("<h1>HOLA MUNDO!</h1>");
+})
+
+/* Muestra todos los productos de la bd en la ruta /productos */
+app.get("/productos",(req, res)=>{
+    res.send(arrayProductosBajados);
+})
+
+/* Muestra un producto aleatorio en la ruta /productoRandom */
+app.get("/productoRandom",(req, res)=>{
+    const random=(max, min)=>{return Math.floor(Math.random() * (arrayProductosBajados.length - 1 + 1) + 1)}
+    const productoRandom=bd.getById(random(3,1));
+    res.send({producto:productoRandom});
+})
