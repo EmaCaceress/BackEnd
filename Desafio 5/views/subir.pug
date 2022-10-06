@@ -1,0 +1,11 @@
+extends layout
+
+block content    
+    form(action="/formulario" method="POST")
+        input(type="text" placeholder="producto" name="title")
+        input(type="text" placeholder="precio" name="price")
+        input(type="submit", value="submit")
+    a(
+        href="/tabla"
+    )
+        input(type="submit", value="Ir a la tabla")

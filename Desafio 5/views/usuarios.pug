@@ -1,0 +1,25 @@
+extends layout
+
+block content
+    h1="usuario"
+    table
+        tr
+            th="ID"
+            th="titulo"
+            th="precio"
+
+        if  isEmpty
+            tr
+                td="No hay usuarios registrados aun..."
+        each usuario in usuarios 
+            tr 
+                td 
+                    a(
+                        href=detailUrlBase + '/' + usuario.id
+                    )=usuario.id
+                td=usuario.titulo
+                td=usuario.precio 
+    a(
+        href="/formulario"
+    )
+        input(type="submit", value="Ir al formulario")
