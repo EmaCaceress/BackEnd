@@ -1,32 +1,45 @@
 import { useEffect, useState } from "react";
+import CrearCarrito from "./CrearCarrito";
+import EliminarCarrito from "./EliminarCarrito";
 
 const Carrito = () => {
-    const [objetos, setObjetos] = useState(null);
+    const [objeto, setObjeto] = useState(null);
+    const [id, setId] = useState('');
 
-    useEffect(() => {
-        fetch(`/api/productos`, { method: "GET" }).then((res) => res.json()).then((data) => setObjetos(data));
-    }, []);
+    const changeId = (event) => {
+        setId(event.target.value)
+    }
 
+    const obtenerProductos = () => {
+        fetch(`/api/carrito/${id}/productos`, { method: "GET" }).then((res) => res.json()).then((data) => setObjeto(data));
+    }
+
+    const eliminarProducto = (id_prod) => {
+        fetch(`api/carrito/${id}/productos/${id_prod}`, { method: "DELETE", headers: { 'Content-Type': 'application/json' } }).then((res) => res.json()).then((data) => setObjeto(data));
+    }
     return (
         <div className='body'>
+            <CrearCarrito></CrearCarrito>
+            <EliminarCarrito></EliminarCarrito>
+            <div>
+                <label>Ingrese el carrito a buscar</label>
+                <input type="text" className="form-control" value={id} onChange={changeId} id="inputAddress" name="id" />
+                <input type="submit" value="Enviar" onClick={obtenerProductos} />
+            </div>
             {
-                objetos !== null
-                    ? objetos?.map((obj, i) => {
-                        return (
-                            <div className="container__card" key={i}>
-                                <h1 className="container__title" >{obj.title}</h1>
-                                <h1 className="container__price" >{obj.price}</h1>
-                                <div className="container__buttons" >
-                                    <input type="submit" value="Agregar" />
-                                    <input type="submit" value="Ver Mas" />
-                                </div>
-                                <div className="container__divImg">
-                                    <img className="container__img" src="https://phantom-marca.unidadeditorial.es/e1e65aab8cbcb632d9c8359b2b6840f9/resize/1320/f/jpg/assets/multimedia/imagenes/2021/07/17/16265320344770.jpg" />
-                                </div>
+                objeto !== null
+                && objeto.productos?.map((obj, i) => {
+                    return (
+                        <div className="container__card" key={i}>
+                            <h1 className="container__title" >{obj.title}</h1>
+                            <h1 className="container__price" >{obj.price}</h1>
+                            <input className="container__buttons" type="submit" value="Eliminar" onClick={() => eliminarProducto(obj.id)} />
+                            <div className="container__divImg">
+                                <img className="container__img" src={obj.url} />
                             </div>
-                        )
-                    })
-                    : <h1>No hay ningun producto</h1>
+                        </div>
+                    )
+                })
             }
         </div>
     );

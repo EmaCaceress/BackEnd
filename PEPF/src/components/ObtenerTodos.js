@@ -1,14 +1,25 @@
 import { useEffect, useState } from "react";
-
+import { Link } from "react-router-dom"
 const ObtenerTodos = () => {
   const [objetos, setObjetos] = useState(null);
+  const [id, setId] = useState('');
 
   useEffect(() => {
     fetch(`/api/productos`, { method: "GET" }).then((res) => res.json()).then((data) => setObjetos(data));
   }, []);
 
+  const changeId = (event) => {
+    setId(event.target.value)
+  }
+
+  const subirProducto = (id_prod) => {
+    fetch(`api/carrito/${id}/productos/${id_prod}`, { method: "POST", headers: { 'Content-Type': 'application/json' } }).then((res) => res.json());
+  }
+
   return (
     <div className='body'>
+      <label htmlFor="inputAddress">Indique id de carrito</label>
+      <input type="text" placeholder="43" value={id} onChange={changeId} />
       {
         objetos !== null
           ? objetos?.map((obj, i) => {
@@ -17,11 +28,11 @@ const ObtenerTodos = () => {
                 <h1 className="container__title" >{obj.title}</h1>
                 <h1 className="container__price" >{obj.price}</h1>
                 <div className="container__buttons" >
-                  <input type="submit" value="Agregar" />
-                  <input type="submit" value="Ver Mas" />
+                  <input type="submit" value="Agregar" onClick={() => subirProducto(obj.id)} />
+                  <Link to="/obtenerId"><input type="submit" value="Ver Mas" /></Link>
                 </div>
                 <div className="container__divImg">
-                  <img className="container__img" src="https://phantom-marca.unidadeditorial.es/e1e65aab8cbcb632d9c8359b2b6840f9/resize/1320/f/jpg/assets/multimedia/imagenes/2021/07/17/16265320344770.jpg" />
+                  <img className="container__img" src={obj.url} />
                 </div>
               </div>
             )

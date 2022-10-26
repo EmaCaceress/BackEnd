@@ -9,7 +9,7 @@ const auth = function (req, res, next) {
     if (req.session.admin)
         return next();
     else
-        return res.status(401).send("No tiene permitido este acceso");
+        return res.status(401).json("No tiene permitido este acceso");
 }
 //POST
 router.post('/productos', auth, (req, res) => {

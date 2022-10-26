@@ -36,7 +36,9 @@
     transform: rotate(360deg);
   }
 }
-
+.bienvenida {
+  text-align: center;
+}
 .container__card {
   border-top: #282c34 2px solid;
   border-bottom: #282c34 2px solid;

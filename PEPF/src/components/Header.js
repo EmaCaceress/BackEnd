@@ -11,7 +11,7 @@ const Header = () => {
             ? login = { user: "admin", cargo: true }
             : login = { user: "usuario", cargo: false }
         console.log(login)
-        fetch(`/login`, { method: "POST", body: JSON.stringify(login), headers: { 'Content-Type': 'application/json' } }).then((res) => { res.json(); console.log(res) });
+        fetch(`/login`, { method: "POST", body: JSON.stringify(login), headers: { 'Content-Type': 'application/json' } }).then((res) => res.json());
     }
 
     return (

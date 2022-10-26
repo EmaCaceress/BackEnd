@@ -1,0 +1,94 @@
+[
+  {
+    "id": 0,
+    "timeStamp": "Wed, 26 Oct 2022 00:54:51 GMT",
+    "productos": [
+      {
+        "title": "mesa ",
+        "price": "7000",
+        "description": "Mesa de pino de 1.20 metros",
+        "cod": "GJI33",
+        "url": "https://www.laviruta.com/resources/img/products/1e6a562f1c44621e2980f2b1ddca8edc.jpg",
+        "timeStamp": "Wed, 26 Oct 2022 00:52:29 GMT",
+        "stock": "15",
+        "id": 1
+      },
+      {
+        "title": "silla",
+        "price": "3000",
+        "description": "Silla de pino, comoda",
+        "cod": "4FKRO",
+        "url": "https://d3ugyf2ht6aenh.cloudfront.net/stores/325/316/products/833021-mla20696352751_052016-o-eabd44f4ef5e9ba9e715123780257297-1024-1024.jpg",
+        "timeStamp": "Wed, 26 Oct 2022 00:53:34 GMT",
+        "stock": "30",
+        "id": 2
+      },
+      {
+        "title": "Moto Yamaha",
+        "price": "500.000",
+        "description": "moto ultra rapida, comoda",
+        "cod": "RFOD2",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_901517-MLA32555057482_102019-W.jpg",
+        "timeStamp": "Wed, 26 Oct 2022 00:54:40 GMT",
+        "stock": "60",
+        "id": 3
+      },
+      {
+        "title": "Moto Yamaha",
+        "price": "500.000",
+        "description": "moto ultra rapida, comoda",
+        "cod": "RFOD2",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_901517-MLA32555057482_102019-W.jpg",
+        "timeStamp": "Wed, 26 Oct 2022 00:54:40 GMT",
+        "stock": "60",
+        "id": 3
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "timeStamp": "Wed, 26 Oct 2022 00:55:28 GMT",
+    "productos": [
+      {
+        "title": "mesa ",
+        "price": "7000",
+        "description": "Mesa de pino de 1.20 metros",
+        "cod": "GJI33",
+        "url": "https://www.laviruta.com/resources/img/products/1e6a562f1c44621e2980f2b1ddca8edc.jpg",
+        "timeStamp": "Wed, 26 Oct 2022 00:52:29 GMT",
+        "stock": "15",
+        "id": 1
+      },
+      {
+        "title": "silla",
+        "price": "3000",
+        "description": "Silla de pino, comoda",
+        "cod": "4FKRO",
+        "url": "https://d3ugyf2ht6aenh.cloudfront.net/stores/325/316/products/833021-mla20696352751_052016-o-eabd44f4ef5e9ba9e715123780257297-1024-1024.jpg",
+        "timeStamp": "Wed, 26 Oct 2022 00:53:34 GMT",
+        "stock": "30",
+        "id": 2
+      },
+      {
+        "title": "silla",
+        "price": "3000",
+        "description": "Silla de pino, comoda",
+        "cod": "4FKRO",
+        "url": "https://d3ugyf2ht6aenh.cloudfront.net/stores/325/316/products/833021-mla20696352751_052016-o-eabd44f4ef5e9ba9e715123780257297-1024-1024.jpg",
+        "timeStamp": "Wed, 26 Oct 2022 00:53:34 GMT",
+        "stock": "30",
+        "id": 2
+      },
+      {
+        "title": "silla",
+        "price": "3000",
+        "description": "Silla de pino, comoda",
+        "cod": "4FKRO",
+        "url": "https://d3ugyf2ht6aenh.cloudfront.net/stores/325/316/products/833021-mla20696352751_052016-o-eabd44f4ef5e9ba9e715123780257297-1024-1024.jpg",
+        "timeStamp": "Wed, 26 Oct 2022 00:53:34 GMT",
+        "stock": "30",
+        "id": 2
+      }
+    ]
+  }
+]

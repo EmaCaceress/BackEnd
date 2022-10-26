@@ -12,7 +12,7 @@ router.get('/carrito/:id/productos', (req, res) => {
 
 //POST
 router.post('/carrito/', (req, res) => {
-    console.log("Router Get")
+    console.log("Router Get crear carrito")
     res.status(200).json(carritoController.crearCarrito())
 })
 router.post('/carrito/:id/productos/:id_prod', (req, res) => {
@@ -27,6 +27,6 @@ router.delete('/carrito/:id', (req, res) => {
 })
 router.delete('/carrito/:id/productos/:id_prod', (req, res) => {
     console.log("Router Delete Producto")
-    res.status(200).json(carritoController.eliminarId(req.params.id, req.params.id_prod))
+    res.status(200).json(carritoController.eliminarProducto(req.params.id, req.params.id_prod))
 })
 module.exports = router;

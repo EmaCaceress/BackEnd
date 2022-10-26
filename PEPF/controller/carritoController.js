@@ -14,19 +14,13 @@ class Contenedor {
     save = (objeto) => {
         try {
             arrayCarrito = this.getAll()
-            id = (arrayCarrito.length)
-            if (Array.isArray(objeto))
-                objeto.map(elemento => {
-                    elemento.id = id = id + 1;
-                    arrayCarrito.push(elemento)
-                });
-            else {
-                objeto.id = id = id + 1;
-                arrayCarrito.push(objeto);
-            }
+            id = arrayCarrito.length
+            const tiempoTranscurrido = Date.now()
+            const hoy = new Date(tiempoTranscurrido)
+            arrayCarrito.push({ id: id, timeStamp: hoy.toUTCString(), productos: [] })
             fs.writeFileSync(this.ruta, JSON.stringify(arrayCarrito, null, 2), 'utf-8')
             console.log("Subida realizada correctamente");
-            return objeto.id
+            return id
         }
         catch (error) {
             console.log("Hubo un error al subir el objeto: ", error.message);
@@ -62,6 +56,7 @@ class Contenedor {
             arrayCarrito[carritoEditado.indice] = carritoEditado.carrito
             await fs.promises.writeFile(this.ruta, JSON.stringify(arrayCarrito, null, 2))
                 .then(() => console.log("Objeto Modificado correctamente"))
+            return "editado correctamente"
         }
         catch (error) {
             console.log("Hubo un error al borrar el objeto: ", error.message);
@@ -78,6 +73,10 @@ class carritoController {
         return bd.save()
     }
 
+    static obtenerProductosCarrito(id) {
+        return (this.obtenerCarritoId(id)).carrito
+    }
+
     // Permite obtener el carrito segun su id
     static obtenerCarritoId(id) {
         let carritos = bd.getAll()
@@ -91,16 +90,23 @@ class carritoController {
         objetoCarrito = this.obtenerCarritoId(req_carrito)
         objetoCarrito.carrito.productos.push((productosController.obtenerProductoId(req_prod)).producto)
         bd.edit(objetoCarrito)
+        return (this.obtenerCarritoId(id)).carrito
     }
 
     // Elimina el carrito por el id
-    static eliminarId(id) {
-        return bd.deleteById((this.obtenerCarritoId(id)).indice)
+    static eliminarCarrito(id) {
+        bd.deleteById((this.obtenerCarritoId(id)).indice)
+        return id
     }
 
     // Elimina el producto del carrito segun su id
-    static eliminarId(id) {
-        return bd.deleteById((this.obtenerCarritoId(id)).indice)
+    static eliminarProducto(req_carrito, req_prod) {
+        console.log(req_carrito)
+        objetoCarrito = this.obtenerCarritoId(req_carrito)
+        let buscado = objetoCarrito.carrito.productos.findIndex(producto => producto.id == req_prod)
+        objetoCarrito.carrito.productos.splice(buscado, 1)
+        bd.edit(objetoCarrito)
+        return objetoCarrito.carrito
     }
 }
 

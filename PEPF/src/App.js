@@ -7,6 +7,7 @@ import Header from './components/Header';
 import EliminarId from './components/EliminarId';
 import Editar from './components/Editar';
 import Carrito from './components/Carrito';
+import Inicio from './components/Inicio';
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path='/' element={<ObtenerTodos />} />
+          <Route path='/' element={<Inicio />} />
           <Route path='/subir' element={<SubirObjeto />} />
           <Route path='/obtenerTodos' element={<ObtenerTodos />} />
           <Route path='/obtenerId' element={<ObtenerId />} />

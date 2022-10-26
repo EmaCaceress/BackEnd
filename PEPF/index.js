@@ -46,7 +46,7 @@ app.post('/login', (req, res) => {
     } else {
         req.session.admin = false;
     }
-    res.status(200).send("logueado correctamente")
+    res.status(200).json("logueado correctamente")
 })
 
 app.use('/api', productos, carrito)
