@@ -19,7 +19,7 @@ const ObtenerTodos = () => {
   return (
     <div className='body'>
       <label htmlFor="inputAddress">Indique id de carrito</label>
-      <input type="text" placeholder="43" value={id} onChange={changeId} />
+      <input type="number" placeholder="43" value={id} onChange={changeId} />
       {
         objetos !== null
           ? objetos?.map((obj, i) => {
@@ -32,7 +32,7 @@ const ObtenerTodos = () => {
                   <Link to="/obtenerId"><input type="submit" value="Ver Mas" /></Link>
                 </div>
                 <div className="container__divImg">
-                  <img className="container__img" src={obj.url} />
+                  <img className="container__img" src={obj.url} alt="hola" />
                 </div>
               </div>
             )

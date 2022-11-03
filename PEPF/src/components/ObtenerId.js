@@ -16,7 +16,7 @@ const ObtenerId = () => {
     <>
       <div className='body'>
         <label>ID</label>
-        <input type="text" className="form-control" name="id" placeholder="" value={id} onChange={changeId} />
+        <input type="number" className="form-control" name="id" placeholder="" value={id} onChange={changeId} />
         <button type="submit" className="btn btn-primary" onClick={peticion}>Sign in</button>
         {
           objeto !== null && <h1>{objeto?.id}-{objeto?.title}:{objeto?.price}</h1>

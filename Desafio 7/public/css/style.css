@@ -1,0 +1,12 @@
+p {
+  display: inline-block;
+}
+p:nth-child(1) {
+  color: blue;
+}
+p:nth-child(2) {
+  color: green;
+}
+p:nth-child(3) {
+  color: rgb(98, 55, 31);
+}

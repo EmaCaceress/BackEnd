@@ -7,7 +7,7 @@ const router = Router(Router)
 //GET POR ID Y OBTENER TODOS
 router.get('/carrito/:id/productos', (req, res) => {
     console.log("Router Get for id:", req.params.id)
-    res.status(200).json(carritoController.obtenerProductosCarrito(req.params.id))
+    res.status(200).json(carritoController.obtenerProductosCarrito(Number(req.params.id)))
 })
 
 //POST

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import CrearCarrito from "./CrearCarrito";
 import EliminarCarrito from "./EliminarCarrito";
 
@@ -23,7 +23,7 @@ const Carrito = () => {
             <EliminarCarrito></EliminarCarrito>
             <div>
                 <label>Ingrese el carrito a buscar</label>
-                <input type="text" className="form-control" value={id} onChange={changeId} id="inputAddress" name="id" />
+                <input type="number" className="form-control" value={id} onChange={changeId} id="inputAddress" name="id" />
                 <input type="submit" value="Enviar" onClick={obtenerProductos} />
             </div>
             {
@@ -35,7 +35,7 @@ const Carrito = () => {
                             <h1 className="container__price" >{obj.price}</h1>
                             <input className="container__buttons" type="submit" value="Eliminar" onClick={() => eliminarProducto(obj.id)} />
                             <div className="container__divImg">
-                                <img className="container__img" src={obj.url} />
+                                <img className="container__img" src={obj.url} alt="hola" />
                             </div>
                         </div>
                     )

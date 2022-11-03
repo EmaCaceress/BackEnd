@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const EliminarCarrito = () => {
     const [id, setId] = useState('');
     const [eliminado, setEliminado] = useState('');
-
 
     const eliminarCarrito = () => {
         fetch(`/api/carrito/${id}`, { method: "DELETE" }).then((res) => res.json()).then((data) => setEliminado(data));

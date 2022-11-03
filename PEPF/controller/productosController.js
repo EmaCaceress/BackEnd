@@ -4,15 +4,6 @@ const directory = path.join('bd', 'productos.json')
 let id = 0;
 let arrayProductos = [];
 
-class Producto {
-    constructor(title, price, url, id) {
-        this.title = title;
-        this.price = price;
-        this.url = url;
-        this.id = id || null;
-    }
-}
-
 class Contenedor {
     constructor(ruta) {
         this.ruta = ruta;
@@ -26,7 +17,7 @@ class Contenedor {
             if (Array.isArray(objeto))
                 objeto.map(elemento => {
                     elemento.id = id = id + 1;
-                    arrayProductos.push(elemento)
+                    return arrayProductos.push(elemento)
                 });
             else {
                 objeto.id = id = id + 1;
