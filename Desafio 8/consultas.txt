@@ -1,0 +1,161 @@
+use eccomerce
+
+1)
+db.productos.insertMany([
+    {producto:'mesa'},
+    {producto:'silla'},
+    {producto:'comedor'},
+    {producto:'escritorio'},
+    {producto:'ropero'},
+    {producto:'alzada'},
+    {producto:'mesita de niño'},
+    {producto:'silla plegable'},
+    {producto:'mesa plegable'},
+    {producto:'mesa de comedor'},
+])
+
+2)
+db.updateOne({producto:'mesa'},{$set:{precio:'3000'})
+db.updateOne({producto:'silla'},{$set:{precio:'1000'})
+db.updateOne({producto:'comedor'},{$set:{precio:'5000'})
+db.updateOne({producto:'escritorio'},{$set:{precio:'5000'})
+db.updateOne({producto:'ropero'},{$set:{precio:'5000'})
+db.updateOne({producto:'alzada'},{$set:{precio:'5000'})
+db.updateOne({producto:'mesita de niño'},{$set:{precio:'2300'})
+db.updateOne({producto:'silla plegable'},{$set:{precio:'3000'})
+db.updateOne({producto:'mesa plegable'},{$set:{precio:'4000'})
+db.updateOne({producto:'mesa de comedor'},{$set:{precio:'4900'})
+
+3)
+db.productos.find({})
+{ _id: ObjectId("636978958e26b226d1ab4564"),
+  producto: 'mesa',
+  precio: '3000' }
+{ _id: ObjectId("636978958e26b226d1ab4565"),
+  producto: 'silla',
+  precio: '1000' }
+{ _id: ObjectId("636978958e26b226d1ab4566"),
+  producto: 'comedor',
+  precio: '5000' }
+{ _id: ObjectId("636978958e26b226d1ab4567"),
+  producto: 'escritorio',
+  precio: '5000' }
+{ _id: ObjectId("636978958e26b226d1ab4568"),
+  producto: 'ropero',
+  precio: '5000' }
+{ _id: ObjectId("636978958e26b226d1ab4569"),
+  producto: 'alzada',
+  precio: '5000' }
+{ _id: ObjectId("636978958e26b226d1ab456a"),
+  producto: 'mesita de niño',
+  precio: '2300' }
+{ _id: ObjectId("636978958e26b226d1ab456b"),
+  producto: 'silla plegable',
+  precio: '3000' }
+{ _id: ObjectId("636978958e26b226d1ab456c"),
+  producto: 'mesa plegable',
+  precio: '4000' }
+{ _id: ObjectId("636978958e26b226d1ab456d"),
+  producto: 'mesa de comedor',
+  precio: '4900' }
+
+4)
+db.productos.count() 
+10 
+
+5)
+A)
+db.productos.insertOne({producto: 'sillita de niño', precio: '1000'})
+
+B-1)
+db.productos.find({precio:{$lte:'1000'}})
+{ _id: ObjectId("636978958e26b226d1ab4565"),
+  producto: 'silla',
+  precio: '1000' }
+{ _id: ObjectId("63697ee28e26b226d1ab456e"),
+  producto: 'sillita de niño',
+  precio: '1000' }
+
+B-2)
+db.productos.find({precio:{$gte:'1000', $lte:'3000'}})
+{ _id: ObjectId("636978958e26b226d1ab4564"),
+  producto: 'mesa',
+  precio: '3000' }
+{ _id: ObjectId("636978958e26b226d1ab4565"),
+  producto: 'silla',
+  precio: '1000' }
+{ _id: ObjectId("636978958e26b226d1ab456a"),
+  producto: 'mesita de niño',
+  precio: '2300' }
+{ _id: ObjectId("636978958e26b226d1ab456b"),
+  producto: 'silla plegable',
+  precio: '3000' }
+{ _id: ObjectId("63697ee28e26b226d1ab456e"),
+  producto: 'sillita de niño',
+  precio: '1000' }
+
+B-3)
+db.productos.find({precio:{$gte:'3000'}})
+{ _id: ObjectId("636958c68e26b226d1ab4563"),
+  producto: 'coca-cola',
+  precio: '540',
+  stock: '240' }
+{ _id: ObjectId("636978958e26b226d1ab4564"),
+  producto: 'mesa',
+  precio: '3000' }
+{ _id: ObjectId("636978958e26b226d1ab4566"),
+  producto: 'comedor',
+  precio: '5000' }
+{ _id: ObjectId("636978958e26b226d1ab4567"),
+  producto: 'escritorio',
+  precio: '5000' }
+{ _id: ObjectId("636978958e26b226d1ab4568"),
+  producto: 'ropero',
+  precio: '5000' }
+{ _id: ObjectId("636978958e26b226d1ab4569"),
+  producto: 'alzada',
+  precio: '5000' }
+{ _id: ObjectId("636978958e26b226d1ab456b"),
+  producto: 'silla plegable',
+  precio: '3000' }
+{ _id: ObjectId("636978958e26b226d1ab456c"),
+  producto: 'mesa plegable',
+  precio: '4000' }
+{ _id: ObjectId("636978958e26b226d1ab456d"),
+  producto: 'mesa de comedor',
+  precio: '4900' }
+
+B-4)
+db.productos.find().sort({precio:1}).skip(2).limit(1)
+{ _id: ObjectId("636978958e26b226d1ab456a"),
+  producto: 'mesita de niño',
+  precio: '2300' }
+
+C)
+db.productos.updateMany({},{$set:{stock:'100'}})
+
+D)
+db.productos.updateMany({precio:{$gte:'4000'}},{$set:{stock:'0'}})
+
+E)
+db.productos.deleteMany({precio:{$lte:'1000'}})
+
+6)
+db.createUser({
+    user:'lector',
+    pwd:'123',
+    roles:[
+    {role:'read',db:'eccomerce'}
+    ]
+})
+
+reiniciamos mongo y ejecutamos el mongosh asi:
+
+mongosh -u lector -p 123
+
+entramos a eccomerce y comprobamos:
+eccomerce> db.productos.insertOne({producto:'mesa de pino', precio: '2340', stock:'100'})
+MongoServerError: not authorized on eccomerce to execute command { insert: "productos", documents: [ { producto: "mesa de pino", precio: "2340", stock: "100", _id: ObjectId('636b1144d6d8b760a2461c92') } ], ordered: true, lsid: { id: UUID("0e0edfef-0c8d-41e1-8f5d-04d14935c1bb") }, $db: "eccomerce" }
+eccomerce>
+
+como se puede ver, no nos permite hacer modificiaciones en la tabla
