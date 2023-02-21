@@ -1,13 +1,17 @@
 {
   "dependencies": {
-<<<<<<< HEAD
-<<<<<<< HEAD
-    "package.json": "^2.0.1"
-=======
-    "package-lock.json": "^1.0.0"
->>>>>>> 33d5524c13300ddf4c947e877aeb909f234f5f8a
-=======
-    "package-lock.json": "^1.0.0"
->>>>>>> 33d5524c13300ddf4c947e877aeb909f234f5f8a
-  }
+    "nodemon": "^2.0.20"
+  },
+  "name": "desafio-2",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }
